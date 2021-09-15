@@ -38,17 +38,41 @@ namespace dynamic_menus.Controllers
        
         public ActionResult OurProducts()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                // you can also log the exception if you want that
+                return RedirectToAction("ErrorPage");
+            }
         }
 
         public ActionResult OurVision()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                // you can also log the exception if you want that
+                return RedirectToAction("ErrorPage");
+            }
         }
 
         public ActionResult SalesJobs()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                // you can also log the exception if you want that
+                return RedirectToAction("ErrorPage");
+            }
         }
 
 
@@ -109,6 +133,7 @@ namespace dynamic_menus.Controllers
             catch
             {
                 // redirect to error page
+                // you can also log the exception if you want that
                 return RedirectToAction("ErrorPage");
 
             }
@@ -138,7 +163,8 @@ namespace dynamic_menus.Controllers
 
             catch
             {
-
+                // redirect to error page
+                // you can also log the exception if you want that
                 return RedirectToAction("ErrorPage");
 
             }
@@ -164,7 +190,8 @@ namespace dynamic_menus.Controllers
             }
             catch
             {
-
+                // redirect to error page
+                // you can also log the exception if you want that
                 return RedirectToAction("ErrorPage");
 
             }
@@ -196,7 +223,8 @@ namespace dynamic_menus.Controllers
 
             catch
             {
-
+                // redirect to error page
+                // you can also log the exception if you want that
                 return RedirectToAction("ErrorPage");
 
             }
@@ -219,7 +247,8 @@ namespace dynamic_menus.Controllers
             }
             catch
             {
-
+                // redirect to error page
+                // you can also log the exception if you want that
                 return RedirectToAction("ErrorPage");
 
             }
