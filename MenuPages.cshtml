@@ -1,0 +1,128 @@
+﻿@model IEnumerable<dynamic_menus.Models.Menu>
+
+@{
+    ViewBag.Title = "MenuPages";
+}
+
+    
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-light">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Simple header</span>
+            </a>
+
+            <ul class="nav nav-pills">
+
+                @foreach (var item in Model.Where(x => x.Parent == null))
+                {
+
+
+                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">@item.MenuName</a></li>
+
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @*Dropdown*@ @Html.DisplayFor(modelItem => item.MenuName)
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            @if (item.SubMenus != null)
+                            {
+                            foreach (var SubMenu in item.SubMenus)
+                            {
+
+                                if (SubMenu.SubMenus == null)
+                                {
+                                    <li><a class="dropdown-item" href="@SubMenu.MenuLink">@SubMenu.MenuName</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                }
+
+                                else
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            @SubMenu.Parent.MenuName
+                                        </a>
+                                        <ul class="list-group">
+                                            @foreach (var SubSubMenu in SubMenu.Parent.SubMenus)
+                                            {
+                                                <li class="list-group-item"><a href="@SubSubMenu.MenuLink">@SubSubMenu.MenuName</a></li>
+
+                                            }
+                                        </ul>
+                                    </li>
+
+                                }
+
+                            }
+                            }
+                        </ul>
+                    </li>
+
+                }
+
+                @foreach (var item in Model)
+                {
+
+
+
+                    @*@Html.DisplayFor(modelItem => item.Parent.MenuName)*@
+
+
+                    if (item.Parent == null)
+                    {
+
+                        if (item.SubMenus == null)
+                        {
+                            <li class="nav-item"><a href=" @Html.DisplayFor(modelItem => item.MenuLink)" class="nav-link">  @Html.DisplayFor(modelItem => item.MenuName)</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @*Dropdown*@ @Html.DisplayFor(modelItem => item.MenuName)
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @foreach (var SubMenu in item.SubMenus)
+                                    {
+
+                                        if (SubMenu.SubMenus == null)
+                                        {
+                                            <li><a class="dropdown-item" href="@SubMenu.MenuLink">@SubMenu.MenuName</a></li>
+                                            <li><hr class="dropdown-divider"></li>
+                                        }
+
+                                        else
+                                        {
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    @SubMenu.MenuName
+                                                </a>
+                                                <ul class="list-group">
+                                                    @foreach (var SubSubMenu in SubMenu.SubMenus)
+                                                    {
+                                                        <li class="list-group-item"><a href="@SubSubMenu.MenuLink">@SubSubMenu.MenuName</a></li>
+
+                                                    }
+                                                </ul>
+                                            </li>
+
+                                        }
+
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+
+
+                @*<li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>*@
+            </ul>
+        </header>
+   
+

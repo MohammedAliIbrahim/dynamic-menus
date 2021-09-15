@@ -1,0 +1,50 @@
+﻿@model IEnumerable<dynamic_menus.Models.Menu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+    <div class="container">
+        <h2 class="mb-5 mt-3">All Menus</h2>
+
+        <p>
+            @Html.ActionLink("Add New Menu", "Create")
+        </p>
+        <!--bootstrap 5 table -->
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Menu Parent Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MenuLink)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Parent.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MenuLink)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MenuId }) |
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MenuId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
