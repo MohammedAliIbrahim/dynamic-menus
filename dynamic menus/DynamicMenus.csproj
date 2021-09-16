@@ -144,6 +144,7 @@
     <Content Include="Views\Menus\OurProducts.cshtml" />
     <Content Include="Views\Menus\OurVision.cshtml" />
     <Content Include="Views\Menus\SalesJobs.cshtml" />
+    <Content Include="Views\Shared\_HeaderMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

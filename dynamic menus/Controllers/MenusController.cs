@@ -28,19 +28,24 @@ namespace DynamicMenus.Controllers
         #endregion
 
         #region Header Menu
+
+        // render a partial view of header menu
+        [ChildActionOnly]
         public ActionResult MenuPages()
         {
             //show only the visible menus
-            var Menus = DB.Menus.Where(x=>x.IsMenuVisible==true).Include(m => m.Parent);
-            return View(Menus.ToList());
+            var Menus = DB.Menus.Where(x => x.IsMenuVisible == true).Include(m => m.Parent);
+            
+            return PartialView("_HeaderMenu", Menus.ToList());
         }
+
         #endregion
 
         #region Internal Pages 
         // internal links
 
-      
-       
+
+
         public ActionResult OurProducts()
         {
             try

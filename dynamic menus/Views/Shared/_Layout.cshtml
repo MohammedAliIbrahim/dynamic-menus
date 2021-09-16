@@ -11,7 +11,9 @@
     <link href="~/Style/Site.css" rel="stylesheet" />
 </head>
 <body>
-
+    @{
+        Html.RenderAction("MenuPages", "Menus");
+    }
 
     @RenderBody()
 
