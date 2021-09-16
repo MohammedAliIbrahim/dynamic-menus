@@ -30,3 +30,9 @@ input[type="submit"], input[type="button"] {
 .dropdown-menu li:not(:last-child) {
     border-bottom: 1px solid #000;
 }
+
+/*scale h2 font on hover*/
+h2:hover{
+
+transform:scale(1.1);
+}

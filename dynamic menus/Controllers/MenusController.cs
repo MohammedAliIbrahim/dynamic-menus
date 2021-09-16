@@ -33,10 +33,18 @@ namespace DynamicMenus.Controllers
         [ChildActionOnly]
         public ActionResult MenuPages()
         {
-            //show only the visible menus
-            var Menus = DB.Menus.Where(x => x.IsMenuVisible == true).Include(m => m.Parent);
-            
-            return PartialView("_HeaderMenu", Menus.ToList());
+            try
+            {
+                //show only the visible menus
+                var Menus = DB.Menus.Where(x => x.IsMenuVisible == true).Include(m => m.Parent);
+
+                return PartialView("_HeaderMenu", Menus.ToList());
+            }
+            catch
+            {
+                // you can also log the exception if you want that
+                return RedirectToAction("ErrorPage");
+            }
         }
 
         #endregion
