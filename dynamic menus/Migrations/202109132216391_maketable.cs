@@ -1,6 +1,6 @@
-﻿namespace dynamic_menus.Migrations
+﻿namespace DynamicMenus.Migrations
 {
-    using System;
+    
     using System.Data.Entity.Migrations;
     
     public partial class maketable : DbMigration

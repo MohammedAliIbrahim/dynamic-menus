@@ -1,4 +1,4 @@
-﻿namespace dynamic_menus.Migrations
+﻿namespace DynamicMenus.Migrations
 {
     using System.Data.Entity.Migrations;
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace dynamic_menus.Models
+namespace DynamicMenus.Models
 {
     public class Menu
     {

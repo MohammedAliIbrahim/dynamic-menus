@@ -3,17 +3,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using dynamic_menus.Models;
+using DynamicMenus.Models;
 
-namespace dynamic_menus.Controllers
+namespace DynamicMenus.Controllers
 {
     public class MenusController : Controller
     {
         private MenuDBContext DB = new MenuDBContext();
 
-        // GET: Menus
-
         #region menus list
+        // GET: Menus
         public ActionResult Index()
         {
             var Menus = DB.Menus.Include(m => m.Parent);
@@ -28,8 +27,6 @@ namespace dynamic_menus.Controllers
             return View(Menus.ToList());
         }
         #endregion
-
-
 
         #region internal pages
         // internal links
@@ -78,7 +75,6 @@ namespace dynamic_menus.Controllers
 
         #endregion
 
-
         #region error page
         // this action renders a page that is used to handle exception in productoin environment
 
@@ -87,10 +83,6 @@ namespace dynamic_menus.Controllers
             return View();
         }
         #endregion
-
-
-
-        // GET: Menus/Create
 
         #region add new menu
         public ActionResult Create()
@@ -139,7 +131,6 @@ namespace dynamic_menus.Controllers
             }
         }
         #endregion
-
 
         #region edit MenuModel information
         // GET: Menus/Edit/5
@@ -199,7 +190,6 @@ namespace dynamic_menus.Controllers
 
         #endregion
 
-
         #region delete
         
         // GET: Menus/Delete/5
@@ -256,6 +246,5 @@ namespace dynamic_menus.Controllers
 
         #endregion
 
-    
     }
 }

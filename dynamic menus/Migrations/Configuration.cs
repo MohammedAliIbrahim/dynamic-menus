@@ -1,18 +1,15 @@
-﻿namespace dynamic_menus.Migrations
+﻿namespace DynamicMenus.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<dynamic_menus.Models.MenuDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DynamicMenus.Models.MenuDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(dynamic_menus.Models.MenuDBContext context)
+        protected override void Seed(DynamicMenus.Models.MenuDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

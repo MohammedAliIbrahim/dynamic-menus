@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace dynamic_menus.Models
+namespace DynamicMenus.Models
 {
     public class MenuDBContext : DbContext
     {
