@@ -7,13 +7,13 @@ namespace DynamicMenus.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class update3 : IMigrationMetadata
+    public sealed partial class AddingNewProperties : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingNewProperties));
         
         string IMigrationMetadata.Id
         {
-            get { return "202109141201466_update3"; }
+            get { return "202109161333068_AddingNewProperties"; }
         }
         
         string IMigrationMetadata.Source

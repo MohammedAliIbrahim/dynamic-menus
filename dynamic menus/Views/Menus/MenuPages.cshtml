@@ -9,7 +9,7 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-light">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-4">Simple header, Home Link or logo</span>
+            <span class="fs-4"> Site Name</span>
         </a>
 
         <!-- dynamic menu in ul  -->
@@ -25,8 +25,19 @@
 
                     if (item.SubMenus == null)
                     {
-                        <!-- if the menu has no children , it will have diffrent look , will have no dropdown style  -->
-                        <li class="nav-item"><a href=" @Url.Content(item.MenuLink)" class="nav-link">  @Html.DisplayFor(modelItem => item.MenuName)</a></li>
+
+
+                        <!-- target is blank  -->
+                        if (item.IsLinkBlankPage == true)
+                        {
+                            <!-- if the menu has no children , it will have diffrent look , will have no dropdown style  -->
+                            <li class="nav-item"><a target="_blank" href=" @Url.Content(item.MenuLink)" class="nav-link">  @Html.DisplayFor(modelItem => item.MenuName)</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a href=" @Url.Content(item.MenuLink)" class="nav-link">  @Html.DisplayFor(modelItem => item.MenuName)</a></li>
+
+                        }
                     }
                     else
                     {
@@ -44,8 +55,19 @@
 
                                     if (SubMenu.SubMenus == null)
                                     {
-                                        <li><a class="dropdown-item" href="@Url.Content(SubMenu.MenuLink)">@SubMenu.MenuName</a></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                        <!-- target is blank  -->
+                                        if (SubMenu.IsLinkBlankPage == true)
+                                        {
+                                            <li><a class="dropdown-item" target="_blank" href="@Url.Content(SubMenu.MenuLink)">@SubMenu.MenuName</a></li>
+
+                                        }
+                                        else
+                                        {
+
+                                            <li><a class="dropdown-item" href="@Url.Content(SubMenu.MenuLink)">@SubMenu.MenuName</a></li>
+                                        }
+
+                                        @*<li><hr class="dropdown-divider"></li>*@
                                     }
 
 

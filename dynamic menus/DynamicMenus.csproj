@@ -51,6 +51,9 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -107,6 +110,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Style\Site.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,17 +119,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202109132216391_maketable.cs" />
-    <Compile Include="Migrations\202109132216391_maketable.designer.cs">
-      <DependentUpon>202109132216391_maketable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109141054464_update2.cs" />
-    <Compile Include="Migrations\202109141054464_update2.designer.cs">
-      <DependentUpon>202109141054464_update2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109141201466_update3.cs" />
-    <Compile Include="Migrations\202109141201466_update3.designer.cs">
-      <DependentUpon>202109141201466_update3.cs</DependentUpon>
+    <Compile Include="Migrations\202109161333068_AddingNewProperties.cs" />
+    <Compile Include="Migrations\202109161333068_AddingNewProperties.designer.cs">
+      <DependentUpon>202109161333068_AddingNewProperties.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Menu.cs" />
@@ -157,18 +153,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="DB Backup\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109132216391_maketable.resx">
-      <DependentUpon>202109132216391_maketable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109141054464_update2.resx">
-      <DependentUpon>202109141054464_update2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109141201466_update3.resx">
-      <DependentUpon>202109141201466_update3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202109161333068_AddingNewProperties.resx">
+      <DependentUpon>202109161333068_AddingNewProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

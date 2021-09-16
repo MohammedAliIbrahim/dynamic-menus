@@ -23,27 +23,40 @@
                 <th>
                     @Html.DisplayNameFor(model => model.MenuLink)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsMenuVisible)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsLinkBlankPage)
+                </th>
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Parent.MenuName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MenuName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MenuLink)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.MenuId }) |
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent.MenuName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuLink)
+            </td>
 
-                        @Html.ActionLink("Delete", "Delete", new { id = item.MenuId })
-                    </td>
-                </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMenuVisible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLinkBlankPage)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MenuId }) |
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.MenuId })
+            </td>
+        </tr>
             }
 
         </table>

@@ -11,24 +11,32 @@ namespace DynamicMenus.Controllers
     {
         private MenuDBContext DB = new MenuDBContext();
 
-        #region menus list
+
+
+
+        #region Menus List
         // GET: Menus
         public ActionResult Index()
         {
             var Menus = DB.Menus.Include(m => m.Parent);
             return View(Menus.ToList());
         }
+
+
+
+
         #endregion
 
-        #region header menu
+        #region Header Menu
         public ActionResult MenuPages()
         {
-            var Menus = DB.Menus.Include(m => m.Parent);
+            //show only the visible menus
+            var Menus = DB.Menus.Where(x=>x.IsMenuVisible==true).Include(m => m.Parent);
             return View(Menus.ToList());
         }
         #endregion
 
-        #region internal pages
+        #region Internal Pages 
         // internal links
 
       
@@ -75,7 +83,7 @@ namespace DynamicMenus.Controllers
 
         #endregion
 
-        #region error page
+        #region Error Page
         // this action renders a page that is used to handle exception in productoin environment
 
         public ActionResult ErrorPage()
@@ -84,7 +92,7 @@ namespace DynamicMenus.Controllers
         }
         #endregion
 
-        #region add new menu
+        #region Add New Menu
         public ActionResult Create()
         {
             try
@@ -104,7 +112,7 @@ namespace DynamicMenus.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MenuId,MenuName,MenuLink,ParentId")] Menu MenuModel)
+        public ActionResult Create([Bind(Include = "MenuId,MenuName,MenuLink,ParentId,IsMenuVisible,IsLinkBlankPage")] Menu MenuModel)
         {
 
             try { 
@@ -113,7 +121,7 @@ namespace DynamicMenus.Controllers
             {
                 DB.Menus.Add(MenuModel);
                 DB.SaveChanges();
-                return RedirectToAction("MenuPages");
+                return RedirectToAction("Index");
             }
 
             // this viewbag is filled with selectlist data of parent menu
@@ -132,7 +140,7 @@ namespace DynamicMenus.Controllers
         }
         #endregion
 
-        #region edit MenuModel information
+        #region Edit Menu  Information
         // GET: Menus/Edit/5
         public ActionResult Edit(int? Id)
         {
@@ -165,7 +173,7 @@ namespace DynamicMenus.Controllers
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MenuId,MenuName,MenuLink,ParentId")] Menu MenuModel)
+        public ActionResult Edit([Bind(Include = "MenuId,MenuName,MenuLink,ParentId,IsMenuVisible,IsLinkBlankPage")] Menu MenuModel)
         {
 
             try
@@ -174,7 +182,7 @@ namespace DynamicMenus.Controllers
                 {
                     DB.Entry(MenuModel).State = EntityState.Modified;
                     DB.SaveChanges();
-                    return RedirectToAction("MenuPages");
+                    return RedirectToAction("Index");
                 }
                 ViewBag.ParentId = new SelectList(DB.Menus.Where(x => x.Parent == null), "MenuId", "MenuName", MenuModel.ParentId);
                 return View(MenuModel);
@@ -190,7 +198,7 @@ namespace DynamicMenus.Controllers
 
         #endregion
 
-        #region delete
+        #region Delete Menu
         
         // GET: Menus/Delete/5
         public ActionResult Delete(int? Id)
@@ -229,10 +237,17 @@ namespace DynamicMenus.Controllers
             // attention ! you must delete the parent menu before deleting its children
             try
             {
-                Menu MenuModel = DB.Menus.Find(Id);
+                Menu MenuModel = DB.Menus.Include(m => m.SubMenus).Where(x=>x.MenuId==Id).FirstOrDefault();
+                if (MenuModel.SubMenus.Any())
+                {
+
+                    ViewBag.ErrorDeleteParent = "You Can Not Delete A Menu That Has Children , Please Delete Its Children First";
+                    return View(MenuModel);
+
+                }
                 DB.Menus.Remove(MenuModel);
                 DB.SaveChanges();
-                return RedirectToAction("MenuPages");
+                return RedirectToAction("Index");
 
             }
             catch
